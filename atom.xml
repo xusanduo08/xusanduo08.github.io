@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengfansheng.com/"/>
-  <updated>2018-12-23T14:03:43.575Z</updated>
+  <updated>2018-12-25T13:50:08.179Z</updated>
   <id>http://mengfansheng.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React为什么需要redux</title>
+    <link href="http://mengfansheng.com/2018/12/25/React%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81redux/"/>
+    <id>http://mengfansheng.com/2018/12/25/React为什么需要redux/</id>
+    <published>2018-12-25T13:49:30.000Z</published>
+    <updated>2018-12-25T13:50:08.179Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="React为什么需要redux？"><a href="#React为什么需要redux？" class="headerlink" title="React为什么需要redux？"></a>React为什么需要redux？</h4><p>1.React有props和state。props是父级分发下来的属性，state意味着组件内部可以自行管理的状态，<strong>整个React应用的数据只能单向向下分发或者自行内部消化</strong>，React没有数据向上回溯的能力。</p><p>2.在React内，使两个独立的组件沟通的方法往往是提升state，将state放到共有的父组件中来管理，再作为props分发给子组件。</p><p>3.子组件改变父组件state的方法一般是通过事件触发父组件声明好的回调，这样就出现了一个模式：数据总是单向从顶层向下分发的，只有子组件回调在概念上可以回到state顶层影响数据。</p><p>4.为了一步到位，干脆把所有state集中放到所有的组件顶层，然后分发给所有组件。</p><p>5.为了有更好的state管理，就需要一个工具作为更专业的顶层state分发给所有React应用，这就是Redux。</p><p>Redux是如何实现上面的需求的：</p><ul><li>需要回调通知state （相当于父级回调方法里的参数）-&gt; action</li><li>需要根据回调处理（等同于父级回调方法） -&gt; reducer</li><li>需要state -&gt; store</li></ul><p>对于Redux来说重点是action、reducer、store：</p><ul><li>action是一个纯声明式的数据结构（原生的js对象），只提供事件的所有要素，不提供逻辑。action描述了发生了什么事情和所发生事情的相关数据，但是针对发生的事情，程序该采取什么动作，action并不负责和关心。</li><li>reducer是一个匹配函数，action的发送是全局的：所有reducer都可以捕捉到并匹配是否与自己相关，相关就拿走action中的数据进行逻辑处理，修改store中的状态，不相关就不对state做处理并原样返回。</li><li>store负责存储状态，并可以被react api回调，发布action</li></ul><p>react-redux：将React和Redux联系起来：</p><ul><li>Provider是一个最顶层的组件，负责向下方传递state。它通过将store放在上下文中，所有被connect的组件都可以从上下文中获取到store。</li><li>connect，最复杂的部分：connect是一个组件，它从上下文中获取到store，进而得到state，然后通过mapStateToProps、mapStateToDispatch将state处理后以props的形式传递给它所包括的组件。<ul><li>mapStateToProps(state, ownProps, …)：通过对state处理，分拣出组件需要的Redux状态，最后返回一个对象，这个对象会以props的形式传给组件。</li><li>mapDispatchToProps(dispatch, ownProps, …)：返回一个对象，将声明好的回调作为props注入到组件里。如果没有这个参数，react-redux会将dispatch作为props传入组件中，在组件内可以直接调用dispatch(action)来表明一个动作的发生。</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;React为什么需要redux？&quot;&gt;&lt;a href=&quot;#React为什么需要redux？&quot; class=&quot;headerlink&quot; title=&quot;React为什么需要redux？&quot;&gt;&lt;/a&gt;React为什么需要redux？&lt;/h4&gt;&lt;p&gt;1.React有props和
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>React里的浅比较</title>
@@ -424,27 +445,6 @@
       
         &lt;p&gt;题目如下：&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;b
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>一道关于解析字符串模板的面试题</title>
-    <link href="http://mengfansheng.com/2017/11/10/%E4%B8%80%E9%81%93%E5%85%B3%E4%BA%8E%E8%A7%A3%E6%9E%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    <id>http://mengfansheng.com/2017/11/10/一道关于解析字符串模板的面试题/</id>
-    <published>2017-11-10T13:39:51.000Z</published>
-    <updated>2018-12-15T14:15:34.623Z</updated>
-    
-    <content type="html"><![CDATA[<p>直接上题目：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  实现将字符串中的特定字符串替换为obj的对应属性</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> greeting = <span class="string">'My name is $&#123;name&#125;, age $&#123;age&#125;, I am a $&#123;job.jobName&#125;'</span>;</span><br><span class="line"><span class="keyword">var</span> employee = &#123;</span><br><span class="line">    name: <span class="string">'XiaoMing'</span>,</span><br><span class="line">    age: <span class="number">11</span>,</span><br><span class="line">    job: &#123;</span><br><span class="line">        jobName: <span class="string">'designer'</span>,</span><br><span class="line">        jobLevel: <span class="string">'senior'</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> result = greeting.render(employee);</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">// My name is XiaoMing,age 11, I am a designer</span></span><br></pre></td></tr></table></figure></p><p>解决方案一：采用正则表达式</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.render = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/\$\&#123;(\w+|\w+\.\w+)\&#125;/g</span>, match =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> keys = match.replace(<span class="string">"$&#123;"</span>, <span class="string">""</span>).replace(<span class="string">"&#125;"</span>, <span class="string">""</span>).split(<span class="string">"."</span>);</span><br><span class="line">    <span class="keyword">var</span> result = keys.reduce(<span class="function">(<span class="params">acc, cv</span>) =&gt;</span> acc[cv], obj);</span><br><span class="line">    <span class="keyword">return</span> result === <span class="literal">undefined</span> ? match : result; <span class="comment">//如果存在指定的属性则替换，否则不替换</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>reduce()</code>方法对累加器和数组中的每个元素从左至右应用一个函数，将其减少为单个值。</p><p>关于<code>reduce()</code>方法，看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="noopener">这里</a></p><p>解决方案二：采用ES6字符串模板</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.render = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//ES6解构、对象keys方法、在函数内部解构并自动展开变量</span></span><br><span class="line">  <span class="built_in">eval</span>(<span class="string">`var &#123;<span class="subst">$&#123;<span class="built_in">Object</span>.keys(obj).join(<span class="string">","</span>)&#125;</span>&#125; = obj`</span>);</span><br><span class="line">  <span class="comment">//利用eval使字符串直接作为ES6解析</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">"`"</span> + <span class="keyword">this</span> + <span class="string">"`"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">将最外层对象去掉，使用解构赋值将属性和属性值作为单独的变量存在，然后再使用字符串模板，这样就能在作用域中找到模板中$&#123;&#125;中字符串对应的变量，从而完成模板渲染。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><p>解构赋值看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener">这里</a>，ES6字符串模板看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings" target="_blank" rel="noopener">这里</a>。</p><p>解决方法三：<code>with()</code>方法</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.render = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">with</span>(obj) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">"`"</span> + <span class="keyword">this</span> + <span class="string">"`"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>with()</code>语句的作用是扩展作用域链。（当然已经不推荐使用<code>with()</code>方法了）</p><p>关于<code>with</code>方法，可以看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/with" target="_blank" rel="noopener">这里</a>。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;直接上题目：&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/sp
       
     
     </summary>
