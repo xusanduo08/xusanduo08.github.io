@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mengfansheng.com/"/>
-  <updated>2018-12-25T13:50:08.179Z</updated>
+  <updated>2018-12-29T04:18:15.115Z</updated>
   <id>http://mengfansheng.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://mengfansheng.com/2018/12/25/React%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81redux/"/>
     <id>http://mengfansheng.com/2018/12/25/React为什么需要redux/</id>
     <published>2018-12-25T13:49:30.000Z</published>
-    <updated>2018-12-25T13:50:08.179Z</updated>
+    <updated>2018-12-29T04:18:15.115Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="React为什么需要redux？"><a href="#React为什么需要redux？" class="headerlink" title="React为什么需要redux？"></a>React为什么需要redux？</h4><p>1.React有props和state。props是父级分发下来的属性，state意味着组件内部可以自行管理的状态，<strong>整个React应用的数据只能单向向下分发或者自行内部消化</strong>，React没有数据向上回溯的能力。</p><p>2.在React内，使两个独立的组件沟通的方法往往是提升state，将state放到共有的父组件中来管理，再作为props分发给子组件。</p><p>3.子组件改变父组件state的方法一般是通过事件触发父组件声明好的回调，这样就出现了一个模式：数据总是单向从顶层向下分发的，只有子组件回调在概念上可以回到state顶层影响数据。</p><p>4.为了一步到位，干脆把所有state集中放到所有的组件顶层，然后分发给所有组件。</p><p>5.为了有更好的state管理，就需要一个工具作为更专业的顶层state分发给所有React应用，这就是Redux。</p><p>Redux是如何实现上面的需求的：</p><ul><li>需要回调通知state （相当于父级回调方法里的参数）-&gt; action</li><li>需要根据回调处理（等同于父级回调方法） -&gt; reducer</li><li>需要state -&gt; store</li></ul><p>对于Redux来说重点是action、reducer、store：</p><ul><li>action是一个纯声明式的数据结构（原生的js对象），只提供事件的所有要素，不提供逻辑。action描述了发生了什么事情和所发生事情的相关数据，但是针对发生的事情，程序该采取什么动作，action并不负责和关心。</li><li>reducer是一个匹配函数，action的发送是全局的：所有reducer都可以捕捉到并匹配是否与自己相关，相关就拿走action中的数据进行逻辑处理，修改store中的状态，不相关就不对state做处理并原样返回。</li><li>store负责存储状态，并可以被react api回调，发布action</li></ul><p>react-redux：将React和Redux联系起来：</p><ul><li>Provider是一个最顶层的组件，负责向下方传递state。它通过将store放在上下文中，所有被connect的组件都可以从上下文中获取到store。</li><li>connect，最复杂的部分：connect是一个组件，它从上下文中获取到store，进而得到state，然后通过mapStateToProps、mapStateToDispatch将state处理后以props的形式传递给它所包括的组件。<ul><li>mapStateToProps(state, ownProps, …)：通过对state处理，分拣出组件需要的Redux状态，最后返回一个对象，这个对象会以props的形式传给组件。</li><li>mapDispatchToProps(dispatch, ownProps, …)：返回一个对象，将声明好的回调作为props注入到组件里。如果没有这个参数，react-redux会将dispatch作为props传入组件中，在组件内可以直接调用dispatch(action)来表明一个动作的发生。</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<h4 id="React为什么需要redux？"><a href="#React为什么需要redux？" class="headerlink" title="React为什么需要redux？"></a>React为什么需要redux？</h4><p>1.React有props和state。props是父级分发下来的属性，state意味着组件内部可以自行管理的状态，<strong>整个React应用的数据只能单向向下分发或者自行内部消化</strong>，React没有数据向上回溯的能力。</p><p>2.在React内，使两个独立的组件沟通的方法往往是提升state，将state放到共有的父组件中来管理，再作为props分发给子组件。</p><p>3.子组件改变父组件state的方法一般是通过事件触发父组件声明好的回调，这样就出现了一个模式：数据总是单向从顶层向下分发的，只有子组件回调在概念上可以回到state顶层影响数据。</p><p>4.为了一步到位，干脆把所有state集中放到所有的组件顶层，然后分发给所有组件。</p><p>5.为了有更好的state管理，就需要一个工具作为更专业的顶层state分发给所有React应用，这就是Redux。</p><p>Redux是如何实现上面的需求的：</p><ul><li>需要回调通知state （相当于父级回调方法里的参数）-&gt; action</li><li>需要根据回调处理（等同于父级回调方法） -&gt; reducer</li><li>需要state -&gt; store</li></ul><p>对于Redux来说重点是action、reducer、store：</p><ul><li>action是一个纯声明式的数据结构（原生的js对象），只提供事件的所有要素，不提供逻辑。action描述了发生了什么事情和所发生事情的相关数据，但是针对发生的事情，程序该采取什么动作，action并不负责和关心。</li><li>reducer是一个匹配函数，action的发送是全局的：所有reducer都可以捕捉到并匹配是否与自己相关，相关就拿走action中的数据进行逻辑处理，修改store中的状态，不相关就不对state做处理并原样返回。</li><li>store负责存储状态，并可以被react api回调，发布action</li></ul><p>react-redux：将React和Redux联系起来：</p><ul><li>Provider是一个最顶层的组件，负责向下方传递state。它通过将store放在上下文中，所有被connect的组件都可以从上下文中获取到store。</li><li>connect，最复杂的部分：connect是一个组件，它从<strong>上下文</strong>中获取到store，进而得到state，然后通过mapStateToProps、mapStateToDispatch将state处理后以props的形式传递给它所包括的组件。<ul><li>mapStateToProps(state, ownProps, …)：通过对state处理，分拣出组件需要的Redux状态，最后返回一个对象，这个对象会以props的形式传给组件。</li><li>mapDispatchToProps(dispatch, ownProps, …)：返回一个对象，将声明好的回调作为props注入到组件里。如果没有这个参数，react-redux会将dispatch作为props传入组件中，在组件内可以直接调用dispatch(action)来表明一个动作的发生。</li></ul></li></ul>]]></content>
     
     <summary type="html">
     

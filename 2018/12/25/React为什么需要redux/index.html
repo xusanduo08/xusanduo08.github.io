@@ -18,7 +18,7 @@
 <p>react-redux：将React和Redux联系起来：</p>
 <ul>
 <li>Provider是一个最顶层的组件，负责向下方传递state。它通过将store放在上下文中，所有被connect的组件都可以从上下文中获取到store。</li>
-<li>connect，最复杂的部分：connect是一个组件，它从上下文中获取到store，进而得到state，然后通过mapStateToProps、mapStateToDispatch将state处理后以props的形式传递给它所包括的组件。<ul>
+<li>connect，最复杂的部分：connect是一个组件，它从<strong>上下文</strong>中获取到store，进而得到state，然后通过mapStateToProps、mapStateToDispatch将state处理后以props的形式传递给它所包括的组件。<ul>
 <li>mapStateToProps(state, ownProps, …)：通过对state处理，分拣出组件需要的Redux状态，最后返回一个对象，这个对象会以props的形式传给组件。</li>
 <li>mapDispatchToProps(dispatch, ownProps, …)：返回一个对象，将声明好的回调作为props注入到组件里。如果没有这个参数，react-redux会将dispatch作为props传入组件中，在组件内可以直接调用dispatch(action)来表明一个动作的发生。</li>
 </ul>
