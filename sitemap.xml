@@ -2,240 +2,247 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://mengfansheng.com/2018/12/12/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-Didact-fiber/</loc>
-    
-    <lastmod>2019-08-31T00:59:03.965Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2017/11/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84test%E3%80%81exec%E3%80%81match/</loc>
-    
-    <lastmod>2019-08-31T00:58:09.520Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2017/11/10/%E6%AF%94%E8%BE%83%E5%9F%BA%E7%A1%80%E7%9A%84%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    
-    <lastmod>2019-08-31T00:56:43.080Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://mengfansheng.com/2017/11/10/%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</loc>
     
-    <lastmod>2019-08-31T00:55:36.576Z</lastmod>
+    <lastmod>2019-08-31T14:02:07.541Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2019/01/31/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</loc>
     
-    <lastmod>2019-08-31T00:55:00.844Z</lastmod>
+    <lastmod>2019-08-31T14:01:33.525Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mengfansheng.com/2019/07/25/%E5%86%99%E4%B8%80%E4%B8%AAredux-saga-4:effect%E5%92%8CeffectRunner/</loc>
+    <loc>http://mengfansheng.com/2017/11/10/%E6%AF%94%E8%BE%83%E5%9F%BA%E7%A1%80%E7%9A%84%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     
-    <lastmod>2019-08-30T16:11:04.779Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2019/07/25/%E5%86%99%E4%B8%80%E4%B8%AAredux-saga-3:task/</loc>
-    
-    <lastmod>2019-08-30T16:09:54.947Z</lastmod>
+    <lastmod>2019-08-31T14:01:03.733Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mengfansheng.com/2019/07/25/%E5%86%99%E4%B8%80%E4%B8%AAredux-saga-2:proc/</loc>
+    <loc>http://mengfansheng.com/2017/11/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84test%E3%80%81exec%E3%80%81match/</loc>
     
-    <lastmod>2019-08-30T16:08:52.554Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2019/07/25/%E5%86%99%E4%B8%80%E4%B8%AAredux-saga-1:saga%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/</loc>
-    
-    <lastmod>2019-08-30T16:07:50.714Z</lastmod>
+    <lastmod>2019-08-31T14:00:01.857Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mengfansheng.com/2019/07/10/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-1-Rendering-DOM-elements/</loc>
+    <loc>http://mengfansheng.com/2018/12/12/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-Didact-fiber/</loc>
     
-    <lastmod>2019-08-30T16:05:39.426Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2019/06/25/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-2-Element-creation-and-JSX-md/</loc>
-    
-    <lastmod>2019-07-16T02:01:46.793Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2019/06/20/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-3-Instances-reconciliation-and-virtual-DOM/</loc>
-    
-    <lastmod>2019-07-16T02:01:24.889Z</lastmod>
+    <lastmod>2019-08-31T13:59:06.729Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2019/06/16/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-4-Components-and-State/</loc>
     
-    <lastmod>2019-07-16T02:00:54.425Z</lastmod>
+    <lastmod>2019-08-31T13:57:54.356Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mengfansheng.com/2019/01/13/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86DOM%E6%A0%91/</loc>
+    <loc>http://mengfansheng.com/2019/06/20/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-3-Instances-reconciliation-and-virtual-DOM/</loc>
     
-    <lastmod>2019-01-13T13:44:57.531Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2019/01/09/BFC-IFC/</loc>
-    
-    <lastmod>2019-01-10T02:06:42.739Z</lastmod>
+    <lastmod>2019-08-31T13:56:54.584Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mengfansheng.com/2018/12/25/React%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81redux/</loc>
+    <loc>http://mengfansheng.com/2019/06/25/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-2-Element-creation-and-JSX-md/</loc>
     
-    <lastmod>2018-12-29T04:18:15.115Z</lastmod>
+    <lastmod>2019-08-31T13:55:11.056Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mengfansheng.com/2018/12/23/React%E9%87%8C%E7%9A%84%E6%B5%85%E6%AF%94%E8%BE%83/</loc>
+    <loc>http://mengfansheng.com/2019/07/10/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-1-Rendering-DOM-elements/</loc>
     
-    <lastmod>2018-12-23T14:03:43.575Z</lastmod>
+    <lastmod>2019-08-31T13:53:18.524Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/11/26/%E6%8E%92%E5%BA%8F%E4%B9%8B%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/</loc>
     
-    <lastmod>2018-12-15T14:15:34.987Z</lastmod>
+    <lastmod>2019-08-31T13:51:26.255Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mengfansheng.com/2018/10/13/%E5%85%B3%E4%BA%8E%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%BE%AE%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%80%E9%81%93%E9%A2%98/</loc>
+    <loc>http://mengfansheng.com/2019/01/13/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86DOM%E6%A0%91/</loc>
     
-    <lastmod>2018-12-15T14:15:34.931Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2017/11/10/%E5%85%B3%E4%BA%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    
-    <lastmod>2018-12-15T14:15:34.883Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2017/11/10/%E5%85%B3%E4%BA%8Ethis%E7%9A%84%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    
-    <lastmod>2018-12-15T14:15:34.827Z</lastmod>
+    <lastmod>2019-08-31T13:49:36.015Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/11/08/%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%9A%84%E4%B8%A4%E5%88%97%E5%B8%83%E5%B1%80/</loc>
     
-    <lastmod>2018-12-15T14:15:34.783Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2017/11/10/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%AB%98%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94%E7%9A%84textarea/</loc>
-    
-    <lastmod>2018-12-15T14:15:34.727Z</lastmod>
+    <lastmod>2019-08-31T13:48:20.591Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/11/08/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E6%98%AF%E6%95%B0%E7%BB%84/</loc>
     
-    <lastmod>2018-12-15T14:15:34.683Z</lastmod>
+    <lastmod>2019-08-31T13:47:15.039Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2017/11/10/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%AB%98%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94%E7%9A%84textarea/</loc>
+    
+    <lastmod>2019-08-31T13:45:05.391Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2019/07/25/%E5%86%99%E4%B8%80%E4%B8%AAredux-saga-3:task/</loc>
+    
+    <lastmod>2019-08-31T13:43:07.066Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2019/07/25/%E5%86%99%E4%B8%80%E4%B8%AAredux-saga-2:proc/</loc>
+    
+    <lastmod>2019-08-31T13:42:18.982Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2019/07/25/%E5%86%99%E4%B8%80%E4%B8%AAredux-saga-1:saga%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/</loc>
+    
+    <lastmod>2019-08-31T13:41:18.198Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2018/10/13/%E5%85%B3%E4%BA%8E%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%BE%AE%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%80%E9%81%93%E9%A2%98/</loc>
+    
+    <lastmod>2019-08-31T13:40:03.554Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2017/11/10/%E5%85%B3%E4%BA%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    
+    <lastmod>2019-08-31T13:37:49.749Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2017/11/10/%E5%85%B3%E4%BA%8Ethis%E7%9A%84%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    
+    <lastmod>2019-08-31T13:34:29.213Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/11/10/%E4%B8%80%E9%81%93%E5%85%B3%E4%BA%8E%E8%A7%A3%E6%9E%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     
-    <lastmod>2018-12-15T14:15:34.623Z</lastmod>
+    <lastmod>2019-08-31T13:31:08.669Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/12/21/TopK%E9%97%AE%E9%A2%98/</loc>
     
-    <lastmod>2018-12-15T14:15:34.419Z</lastmod>
+    <lastmod>2019-08-31T13:29:56.180Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2018/12/23/React%E9%87%8C%E7%9A%84%E6%B5%85%E6%AF%94%E8%BE%83/</loc>
+    
+    <lastmod>2019-08-31T13:29:02.044Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2018/07/08/React%E4%BC%98%E5%8C%96%EF%BC%9AVirtual-DOM/</loc>
     
-    <lastmod>2018-12-15T14:15:34.347Z</lastmod>
+    <lastmod>2019-08-31T13:26:57.752Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2018/12/25/React%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81redux/</loc>
+    
+    <lastmod>2019-08-31T13:24:55.844Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/12/18/PreparedStatement%E4%B8%8ESQL%E6%B3%A8%E5%85%A5/</loc>
     
-    <lastmod>2018-12-15T14:15:34.307Z</lastmod>
+    <lastmod>2019-08-31T13:20:46.143Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/11/10/object-Object/</loc>
     
-    <lastmod>2018-12-15T14:15:34.247Z</lastmod>
+    <lastmod>2019-08-31T13:19:13.111Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/11/10/js%E7%9A%84%E6%B7%B1%E6%8B%B7%E8%B4%9D/</loc>
     
-    <lastmod>2018-12-15T14:15:34.203Z</lastmod>
+    <lastmod>2019-08-31T13:15:50.862Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/11/10/js%E4%B8%AD%E7%9A%84bind/</loc>
     
-    <lastmod>2018-12-15T14:15:34.143Z</lastmod>
+    <lastmod>2019-08-31T13:14:37.890Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/12/21/Javascript%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</loc>
     
-    <lastmod>2018-12-15T14:15:34.103Z</lastmod>
+    <lastmod>2019-08-31T13:13:42.282Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2017/11/10/Function%E5%92%8CObject/</loc>
     
-    <lastmod>2018-12-15T14:15:34.035Z</lastmod>
+    <lastmod>2019-08-31T13:12:26.650Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mengfansheng.com/2018/10/15/column-count/</loc>
     
-    <lastmod>2018-12-15T14:15:33.999Z</lastmod>
+    <lastmod>2019-08-31T13:10:31.838Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2017/11/10/closure/</loc>
+    
+    <lastmod>2019-08-31T13:09:34.377Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2019/01/09/BFC-IFC/</loc>
+    
+    <lastmod>2019-08-31T13:07:15.985Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mengfansheng.com/2019/07/25/%E5%86%99%E4%B8%80%E4%B8%AAredux-saga-4:effect%E5%92%8CeffectRunner/</loc>
+    
+    <lastmod>2019-08-31T13:02:13.612Z</lastmod>
     
   </url>
   
@@ -243,20 +250,6 @@
     <loc>http://mengfansheng.com/2017/11/08/code-review/</loc>
     
     <lastmod>2018-12-15T14:15:33.935Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2017/11/08/clourse/</loc>
-    
-    <lastmod>2018-12-15T14:15:33.895Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mengfansheng.com/2017/11/10/closure/</loc>
-    
-    <lastmod>2018-12-15T14:15:33.835Z</lastmod>
     
   </url>
   
