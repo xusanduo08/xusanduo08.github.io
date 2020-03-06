@@ -3,6 +3,13 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date())
 
 gtag('config', 'UA-146300475-1')
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cfd774e7572f024fbb235d52afbd4103";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
 </script><link rel="search" type="application/opensearchdescription+xml" href="http://mengfansheng.com/atom.xml" title="Neo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://segmentfault.com/a/1190000017234428" target="_blank" class="nav-list-link">SEGMENGFAULT</a></li><li class="nav-list-item"><a href="https://github.com/xusanduo08" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">构建自己的React:Didact fiber</h1><div class="post-info">Dec 12, 2018</div><div class="post-content"><p>翻译自这里：<a href="https://engineering.hexacta.com/didact-fiber-incremental-reconciliation-b2fe028dcaec" target="_blank" rel="noopener">https://engineering.hexacta.com/didact-fiber-incremental-reconciliation-b2fe028dcaec</a></p>
 <p>React16已经发布了，其内部重写了很多代码，内部结构也发生了一些变化，有一些新的特性也随之推出。我们在之前系列里写的代码多多少少有些过时了。在这一节，我们将会根据React16的最新结构来重写大部分的代码，代码结构和变量命名我们也会尽量按照React16的来。我们的代码暴露了一下几个API：</p>
 <ul>
