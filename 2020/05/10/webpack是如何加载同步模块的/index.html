@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="中文"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>  · Neo</title><meta name="description" content=" - 孟凡胜"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="keywords" content="react redux redux-saga"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-146300475-1"></script><script>window.dataLayer = window.dataLayer || [];
+<!DOCTYPE html><html lang="中文"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> webpack是如何加载同步模块的 · Neo</title><meta name="description" content="webpack打包 同步模块加载 源码分析 webpack模块加载流程"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="keywords" content="webpack打包 同步模块加载 webpack打包源码分析 webpack模块加载流程"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-146300475-1"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date())
 
@@ -10,9 +10,7 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-</script><link rel="search" type="application/opensearchdescription+xml" href="http://mengfansheng.com/atom.xml" title="Neo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://segmentfault.com/a/1190000017234428" target="_blank" class="nav-list-link">SEGMENGFAULT</a></li><li class="nav-list-item"><a href="https://github.com/xusanduo08" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/2048/" target="_self" class="nav-list-link">GAMES</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title"></h1><div class="post-info">May 10, 2020</div><div class="post-content"><hr>
-<p>title: webpack是如何加载同步模块的<br>date: 2020-05-10 22:39:26<br>tags: webpack 打包 模块加载<br>desc: webpack打包 同步模块加载 源码分析 webpack模块加载流程</p>
-<h2 id="keywords-webpack打包-同步模块加载-webpack打包源码分析-webpack模块加载流程"><a href="#keywords-webpack打包-同步模块加载-webpack打包源码分析-webpack模块加载流程" class="headerlink" title="keywords: webpack打包 同步模块加载 webpack打包源码分析 webpack模块加载流程"></a>keywords: webpack打包 同步模块加载 webpack打包源码分析 webpack模块加载流程</h2><p>先看下同步加载代码。</p>
+</script><link rel="search" type="application/opensearchdescription+xml" href="http://mengfansheng.com/atom.xml" title="Neo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://segmentfault.com/a/1190000017234428" target="_blank" class="nav-list-link">SEGMENGFAULT</a></li><li class="nav-list-item"><a href="https://github.com/xusanduo08" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/2048/" target="_self" class="nav-list-link">GAMES</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">webpack是如何加载同步模块的</h1><div class="post-info">May 10, 2020</div><div class="post-content"><p>先看下同步加载代码。</p>
 <p>入口文件index.js:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> text <span class="keyword">from</span> <span class="string">'./sync.js'</span></span><br><span class="line"><span class="built_in">console</span>.log(text)</span><br></pre></td></tr></table></figure>
 <p>被导入文件sync.js：</p>
@@ -54,7 +52,7 @@ var _hmt = _hmt || [];
 <p>-</p>
 </div></article></div></main><footer><div class="paginator"><a href="/2020/01/01/前端工程化/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
 var disqus_identifier = '2020/05/10/webpack是如何加载同步模块的/';
-var disqus_title = '';
+var disqus_title = 'webpack是如何加载同步模块的';
 var disqus_url = 'http://mengfansheng.com/2020/05/10/webpack是如何加载同步模块的/';
 (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
