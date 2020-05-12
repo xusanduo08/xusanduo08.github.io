@@ -50,7 +50,7 @@ var _hmt = _hmt || [];
 <p>模块的加载过程主要用到的就是<code>__webpack_require__(moduleId)</code>这个方法。加载流程就是先加载入口模块（index.js），如果当前模块内部又引用了其他模块（sync.js），则继续使用<code>__webpack_require__(moduleId)</code>去加载，这样一直<strong>递归</strong>加载下去，直到所有模块都加载完毕。对于每个加载过的模块都会被缓存起来（存储在installedModules[moduleId]下），后续再次用到时会直接去缓存中获取而不用再去执行一次模块。</p>
 <p><img src="/images/模块加载流程.jpg" alt="模块加载流程"></p>
 <p>-</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2020/01/01/前端工程化/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
+</div></article></div></main><footer><div class="paginator"><a href="/2020/05/12/webpack是如何加载异步模块的/" class="prev">PREV</a><a href="/2020/01/01/前端工程化/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
 var disqus_identifier = '2020/05/10/webpack是如何加载同步模块的/';
 var disqus_title = 'webpack是如何加载同步模块的';
 var disqus_url = 'http://mengfansheng.com/2020/05/10/webpack是如何加载同步模块的/';
