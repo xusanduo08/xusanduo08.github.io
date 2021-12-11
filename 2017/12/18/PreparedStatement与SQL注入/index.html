@@ -47,7 +47,7 @@ var _hmt = _hmt || [];
 <p>这时候包括参数在内都会被编译然后执行，所以传入的参数中如果包含sql关键字或语句，就有可能出现sql注入。</p>
 <p>使用PreparedStatement时，语句中的参数位置使用 ? 占位，在创建PreparedStatement对象时，sql语句就已经被编译，当所需要的参数传进来时语句就会直接执行。也就是说，预编译之后，数据库就不会重复编译了，这个时候再传什么and、or等关键字都只会当成普通字符串来处理，所以，即使用户传了能够引起sql注入的语句，也只会被当做参数，不会去运行。</p>
 <p>究其原因就是PreparedStatement多了预编译的过程。</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2017/12/21/Javascript%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="prev">PREV</a><a href="/2017/11/26/%E6%8E%92%E5%BA%8F%E4%B9%8B%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
+</div></article></div></main><footer><div class="paginator"><a href="/2017/12/21/Javascript%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="prev">上一篇</a><a href="/2017/11/26/%E6%8E%92%E5%BA%8F%E4%B9%8B%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" class="next">下一篇</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
 var disqus_identifier = '2017/12/18/PreparedStatement与SQL注入/';
 var disqus_title = 'PreparedStatement与SQL注入';
 var disqus_url = 'http://mengfansheng.com/2017/12/18/PreparedStatement与SQL注入/';

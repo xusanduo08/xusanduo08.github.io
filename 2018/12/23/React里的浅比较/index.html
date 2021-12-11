@@ -38,7 +38,7 @@ var _hmt = _hmt || [];
 
 <p>​    通过上面的代码的可以看出（尤其最后一段），当传入参数是对象时__浅比较只会进入到对象的第一层__，如果参数对象的属性值仍然是对象，这时候是不会递归进入到属性值内部去比较的；如果参数对象前后指向的是不同的引用，即使引用所指向对象的内部属性值都是一样，shallowEqual返回的结果仍会是false。如果想此时仍能使用PureComponent达到性能优化的结果，则必须保证传入参数所指向的都是同一个引用。</p>
 <p>​    综上，PureComponent有性能优化的功能，前提是组件接收的props或者组件内部的state结构比较简单。如果props或者state嵌套比较深（有两层及以上的嵌套），则可能就没法通过shallowEqual比较出变化，这也是有些组件使用了PureComponent后没有发现有任何性能上的优化的原因。</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2018/12/25/React%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81redux/" class="prev">PREV</a><a href="/2018/12/12/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-Didact-fiber/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
+</div></article></div></main><footer><div class="paginator"><a href="/2018/12/25/React%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81redux/" class="prev">上一篇</a><a href="/2018/12/12/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84React-Didact-fiber/" class="next">下一篇</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
 var disqus_identifier = '2018/12/23/React里的浅比较/';
 var disqus_title = 'React里的浅比较';
 var disqus_url = 'http://mengfansheng.com/2018/12/23/React里的浅比较/';
