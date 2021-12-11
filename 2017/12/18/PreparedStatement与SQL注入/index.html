@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="中文"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> PreparedStatement与SQL注入 · Neo</title><meta name="description" content="PreparedStatement与SQL注入"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui"><meta name="keywords" content="PreparedStatement SQL注入"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="apple-touch-icon" href="2048/meta/apple-touch-icon.png"><link rel="apple-touch-startup-image" href="2048/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="2048/meta/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-146300475-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date())
+
+gtag('config', 'UA-146300475-1')
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cfd774e7572f024fbb235d52afbd4103";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="search" type="application/opensearchdescription+xml" href="http://mengfansheng.com/atom.xml" title="Neo"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Neo" type="application/atom+xml">
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://segmentfault.com/a/1190000017234428" target="_blank" class="nav-list-link">SEGMENGFAULT</a></li><li class="nav-list-item"><a href="https://github.com/xusanduo08" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/2048/" target="_self" class="nav-list-link">GAMES</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">PreparedStatement与SQL注入</h1><div class="post-info">Dec 18, 2017</div><div class="post-content"><h5 id="什么是SQL注入"><a href="#什么是SQL注入" class="headerlink" title="什么是SQL注入"></a>什么是SQL注入</h5><blockquote>
+<p>所谓SQL注入，就是通过把SQL命令插入到Web表单或输入域名或页面请求的查询字符串中，最终欺骗服务器执行的恶意的SQL命令。</p>
+</blockquote>
+<h5 id="举个简单的栗子"><a href="#举个简单的栗子" class="headerlink" title="举个简单的栗子"></a>举个简单的栗子</h5><p>现在实现一个登陆功能，前台俩输入框，用户名和密码，后台获取到前台传来的用户名和密码后构建一条查询用户的sql语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql = <span class="string">&quot;select count(*) as count from user where username = &quot;</span> + username <span class="string">&quot; and password = &quot;</span> + password;</span><br></pre></td></tr></table></figure>
+
+<p>通过运行上面的sql语句，可以根据count是否大于0来判断用户是否可以正常登陆。</p>
+<p>当然，这对于正常的登陆没有问题，但怕就怕不正常的情况。</p>
+<p>假如，用户的密码是这样的<code>&#39;&#39;or &#39;1&#39;=&#39;1&#39;</code>，那么这种情况下最终拼装出来的sql语句就是下面这条：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">as</span> count <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username <span class="operator">=</span> <span class="string">&#x27;name&#x27;</span> <span class="keyword">and</span> password <span class="operator">=</span> <span class="string">&#x27;&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;1&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;1&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下 sql语句返回的执行结果始终大于0，也就是说，可以通过这样的方式实现任意登录。之所以会出现这样的情况，是因为用户的输入中包含一些sql语句中特殊的单词或符号，而且后台把用户输入的东西在数据库执行了。</p>
+<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>我了解到的解决方法有下面三种：</p>
+<ul>
+<li>对用户的输入进行过滤，转义敏感字符</li>
+<li>使用存储过程，即sql语句都写在存储过程中，后天只是调用存储过程</li>
+<li>使用PreparedStatement代替Statement</li>
+</ul>
+<p>第一条：对用户的输入进行过滤，转义敏感字符</p>
+<p>​    前台可以对用户的输入进行检测，如果出现像<code>select/update/delete/&gt;/</code>等sql关键字或操作符就提示为非法输入。</p>
+<p>第二条：使用存储过程（这一条不说了，因为我暂时还没了解这么多）</p>
+<p>第三条：使用PreparedStatement代替Statement</p>
+<p>用PreparedStatement来是实现上面的登陆：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Connection conn = DriverManger.getConnection(<span class="string">&quot;jdbc:mysql://ip:port/jdbc&quot;</span>,<span class="string">&quot;name&quot;</span>,<span class="string">&quot;password&quot;</span>);</span><br><span class="line">String sql =  <span class="string">&quot;select count(*) as count from user where username = ? and password = ?&quot;</span>;</span><br><span class="line">PreparedStatement ps = conn.prepareStatement(sql);</span><br><span class="line">ps.setString(<span class="number">1</span>, username);</span><br><span class="line">ps.setString(<span class="number">2</span>, password);</span><br></pre></td></tr></table></figure>
+
+<p>以上就是通过PreparedStatement实现登陆功能的伪代码。</p>
+<p>用户输入内容相同的情况下，使用PreparedStatement打印出来的sql语句如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">as</span> count <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username <span class="operator">=</span> <span class="string">&#x27;name&#x27;</span> <span class="keyword">and</span> password <span class="operator">=</span><span class="string">&#x27;\&#x27;</span>\<span class="string">&#x27; or \&#x27;</span><span class="number">1</span>\<span class="string">&#x27;=\&#x27;</span><span class="number">1</span>\<span class="string">&#x27;&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到单引号被转义了，用户没法截断原来的字符串，所以也就没法sql注入，而且用户输入的密码完整的被当做了一个参数。</p>
+<h5 id="为什么使用PreparedStatement可以防止SQL注入"><a href="#为什么使用PreparedStatement可以防止SQL注入" class="headerlink" title="为什么使用PreparedStatement可以防止SQL注入"></a>为什么使用PreparedStatement可以防止SQL注入</h5><p>一个sql是经过解析器编译然后才执行。在使用Statement时，sql拼接完后才会进行编译然后执行，例如上面那句sql：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">as</span> count <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username <span class="operator">=</span> <span class="string">&#x27;name&#x27;</span> <span class="keyword">and</span> password <span class="operator">=</span> <span class="string">&#x27;&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;1 = 1&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这时候包括参数在内都会被编译然后执行，所以传入的参数中如果包含sql关键字或语句，就有可能出现sql注入。</p>
+<p>使用PreparedStatement时，语句中的参数位置使用 ? 占位，在创建PreparedStatement对象时，sql语句就已经被编译，当所需要的参数传进来时语句就会直接执行。也就是说，预编译之后，数据库就不会重复编译了，这个时候再传什么and、or等关键字都只会当成普通字符串来处理，所以，即使用户传了能够引起sql注入的语句，也只会被当做参数，不会去运行。</p>
+<p>究其原因就是PreparedStatement多了预编译的过程。</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/12/21/Javascript%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="prev">PREV</a><a href="/2017/11/26/%E6%8E%92%E5%BA%8F%E4%B9%8B%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
+var disqus_identifier = '2017/12/18/PreparedStatement与SQL注入/';
+var disqus_title = 'PreparedStatement与SQL注入';
+var disqus_url = 'http://mengfansheng.com/2017/12/18/PreparedStatement与SQL注入/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//seansun.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2021 <a href="http://mengfansheng.com">孟凡胜</a>, <a href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备17022623号</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

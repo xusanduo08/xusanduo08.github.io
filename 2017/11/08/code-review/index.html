@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="中文"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> code review · Neo</title><meta name="description" content="code review - 孟凡胜"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui"><meta name="keywords" content="react redux redux-saga"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="apple-touch-icon" href="2048/meta/apple-touch-icon.png"><link rel="apple-touch-startup-image" href="2048/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="2048/meta/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-146300475-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date())
+
+gtag('config', 'UA-146300475-1')
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cfd774e7572f024fbb235d52afbd4103";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="search" type="application/opensearchdescription+xml" href="http://mengfansheng.com/atom.xml" title="Neo"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Neo" type="application/atom+xml">
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://segmentfault.com/a/1190000017234428" target="_blank" class="nav-list-link">SEGMENGFAULT</a></li><li class="nav-list-item"><a href="https://github.com/xusanduo08" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/2048/" target="_self" class="nav-list-link">GAMES</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">code review</h1><div class="post-info">Nov 8, 2017</div><div class="post-content"><ul>
+<li>关键代码需要注释</li>
+</ul>
+<p>例如，一些地方需要flag来标识判断条件，这个时候就需要明确说明该变量表示什么意思</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$Gadget.isMainOffer = <span class="literal">true</span>;<span class="comment">//标识是否是主商品，true-是主商品，false-非主商品</span></span><br><span class="line"><span class="keyword">if</span>($Gadget.isMainOffer)&#123;</span><br><span class="line">  <span class="comment">/*假装有代码*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>正则需要注释</li>
+</ul>
+<p>用到正则表达式的地方，需要明确注释，写明该正则用来匹配符合哪些条件的字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/^[1-9][0-9]$/</span>;<span class="comment">//匹配以1-9开头和以0-9结束的至少2位的一串数字</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对象内部引用对象自身方法使用__this__代替</li>
+</ul>
+<p>处于对象的命名空间下，使用对象自身的方法，可以使用this.方法名，这样在对象名称更改之后，不用再去修改对象内部方法中涉及到对象命名空间的地方。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $Controller.createSub = &#123;</span><br><span class="line">  <span class="attr">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">/*假装有代码*/</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">checkout</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.validateOrder();<span class="comment">//使用this.方法名，而不是$Controller.createSub.validateOrder()</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">validateOrder</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">/*假装有代码*/</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运算符号前后加空格</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ - = : ? / * || &amp;&amp; 等符号前后需要加空格</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数要注释写明该函数作用，出入参以及作者</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   @authro 孟凡胜</span></span><br><span class="line"><span class="comment">   @desc  校验用户订单信息</span></span><br><span class="line"><span class="comment">   @params  custDetailInfo</span></span><br><span class="line"><span class="comment">   @returns  true--校验通过  false--校验失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateOrder</span>(<span class="params">custDetailInfo</span>)</span>&#123;</span><br><span class="line">  <span class="comment">/*假装有代码*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一行代码不要太长，太长的要换行展示，并且尽量在运算符处换行</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(custDetailInfo.OrderDetail.orderId </span><br><span class="line">	&amp;&amp; custDetailInfo.OrderDetail.orderName</span><br><span class="line">	&amp;&amp; custDetailInfo.OrderDetail.orderTime)&#123;</span><br><span class="line">		<span class="comment">/*假装有代码*/</span>      </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/11/08/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E6%98%AF%E6%95%B0%E7%BB%84/" class="prev">PREV</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
+var disqus_identifier = '2017/11/08/code-review/';
+var disqus_title = 'code review';
+var disqus_url = 'http://mengfansheng.com/2017/11/08/code-review/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//seansun.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2021 <a href="http://mengfansheng.com">孟凡胜</a>, <a href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备17022623号</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

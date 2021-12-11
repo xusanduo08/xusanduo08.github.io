@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="中文"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> React为什么需要redux · Neo</title><meta name="description" content="react redux 单向数据流"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui"><meta name="keywords" content="react redux 单向数据流"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="apple-touch-icon" href="2048/meta/apple-touch-icon.png"><link rel="apple-touch-startup-image" href="2048/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="2048/meta/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-146300475-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date())
+
+gtag('config', 'UA-146300475-1')
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cfd774e7572f024fbb235d52afbd4103";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="search" type="application/opensearchdescription+xml" href="http://mengfansheng.com/atom.xml" title="Neo"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Neo" type="application/atom+xml">
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://segmentfault.com/a/1190000017234428" target="_blank" class="nav-list-link">SEGMENGFAULT</a></li><li class="nav-list-item"><a href="https://github.com/xusanduo08" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/2048/" target="_self" class="nav-list-link">GAMES</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">React为什么需要redux</h1><div class="post-info">Dec 25, 2018</div><div class="post-content"><h4 id="React为什么需要redux？"><a href="#React为什么需要redux？" class="headerlink" title="React为什么需要redux？"></a>React为什么需要redux？</h4><p>1.React有props和state。props是父级分发下来的属性，state意味着组件内部可以自行管理的状态，__整个React应用的数据只能单向向下分发或者自行内部消化__，React没有数据向上回溯的能力。</p>
+<p>2.在React内，使两个独立的组件沟通的方法往往是提升state，将state放到共有的父组件中来管理，再作为props分发给子组件。</p>
+<p>3.子组件改变父组件state的方法一般是通过事件触发父组件声明好的回调，这样就出现了一个模式：数据总是单向从顶层向下分发的，只有子组件回调在概念上可以回到state顶层影响数据。</p>
+<p>4.为了一步到位，干脆把所有state集中放到所有的组件顶层，然后分发给所有组件。</p>
+<p>5.为了有更好的state管理，就需要一个工具作为更专业的顶层state分发给所有React应用，这就是Redux。</p>
+<p>Redux是如何实现上面的需求的：</p>
+<ul>
+<li>需要回调通知state （相当于父级回调方法里的参数）-&gt; action</li>
+<li>需要根据回调处理（等同于父级回调方法） -&gt; reducer</li>
+<li>需要state -&gt; store</li>
+</ul>
+<p>对于Redux来说重点是action、reducer、store：</p>
+<ul>
+<li>action是一个纯声明式的数据结构（原生的js对象），只提供事件的所有要素，不提供逻辑。action描述了发生了什么事情和所发生事情的相关数据，但是针对发生的事情，程序该采取什么动作，action并不负责和关心。</li>
+<li>reducer是一个匹配函数，action的发送是全局的：所有reducer都可以捕捉到并匹配是否与自己相关，相关就拿走action中的数据进行逻辑处理，修改store中的状态，不相关就不对state做处理并原样返回。</li>
+<li>store负责存储状态，并可以被react api回调，发布action</li>
+</ul>
+<p>react-redux：将React和Redux联系起来：</p>
+<ul>
+<li>Provider是一个最顶层的组件，负责向下方传递state。它通过将store放在上下文中，所有被connect的组件都可以从上下文中获取到store。</li>
+<li>connect，最复杂的部分：connect是一个组件，它从__上下文__中获取到store，进而得到state，然后通过mapStateToProps、mapStateToDispatch将state处理后以props的形式传递给它所包括的组件。<ul>
+<li>mapStateToProps(state, ownProps, …)：通过对state处理，分拣出组件需要的Redux状态，最后返回一个对象，这个对象会以props的形式传给组件。</li>
+<li>mapDispatchToProps(dispatch, ownProps, …)：返回一个对象，将声明好的回调作为props注入到组件里。如果没有这个参数，react-redux会将dispatch作为props传入组件中，在组件内可以直接调用dispatch(action)来表明一个动作的发生。</li>
+</ul>
+</li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a href="/2019/01/09/BFC-IFC/" class="prev">PREV</a><a href="/2018/12/23/React%E9%87%8C%E7%9A%84%E6%B5%85%E6%AF%94%E8%BE%83/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
+var disqus_identifier = '2018/12/25/React为什么需要redux/';
+var disqus_title = 'React为什么需要redux';
+var disqus_url = 'http://mengfansheng.com/2018/12/25/React为什么需要redux/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//seansun.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2021 <a href="http://mengfansheng.com">孟凡胜</a>, <a href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备17022623号</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

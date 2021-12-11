@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="中文"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Javascript中的隐式类型转换 · Neo</title><meta name="description" content="隐式类型转换"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui"><meta name="keywords" content="隐式类型转换"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="apple-touch-icon" href="2048/meta/apple-touch-icon.png"><link rel="apple-touch-startup-image" href="2048/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="2048/meta/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-146300475-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date())
+
+gtag('config', 'UA-146300475-1')
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cfd774e7572f024fbb235d52afbd4103";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="search" type="application/opensearchdescription+xml" href="http://mengfansheng.com/atom.xml" title="Neo"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Neo" type="application/atom+xml">
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://segmentfault.com/a/1190000017234428" target="_blank" class="nav-list-link">SEGMENGFAULT</a></li><li class="nav-list-item"><a href="https://github.com/xusanduo08" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/2048/" target="_self" class="nav-list-link">GAMES</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Javascript中的隐式类型转换</h1><div class="post-info">Dec 21, 2017</div><div class="post-content"><p>隐式类型转换出现在<code>==</code>中，全等号<code>===</code>不存在隐式类型转换，另外还要了解一点，<code>JavaScript</code>中有三种原始类型（<code>primitive value</code>），分别是<code>Number</code>、<code>String</code>、<code>Boolean</code>，__隐式类型转换的最终结果就将双等号两边的数据转换成原始类型然后再进行比较__。</p>
+<h4 id="双等号比较时隐式类型转换步骤"><a href="#双等号比较时隐式类型转换步骤" class="headerlink" title="双等号比较时隐式类型转换步骤"></a>双等号比较时隐式类型转换步骤</h4><p>1、首先看双等号前后有没有<code>NaN</code>，如果有，则比较结果一律为<code>false</code>；</p>
+<p>2、再看双等号前后有没有布尔值，有布尔值就将布尔值转换成数字。（<code>true</code>为1，<code>false</code>为0）；</p>
+<p>3、然后再看等号两边有没有字符串，有字符串又分为三种情况</p>
+<ul>
+<li><p>另外一边是对象，对象使用<code>toString()</code>或者<code>valueOf()</code>进行转换，如果<code>valueOf()</code>返回的是原始类型的值，则采用该值进行比较；如果返回的不是原始类型的值，则尝试使用<code>toString()</code>的返回值，如果<code>toString()</code>的返回值是原始类型，则使用该值进行比较，否则，抛出错误:</p>
+<p>  ​        <code>Uncaught TypeError: Cannot convert object to primitive value</code>；</p>
+</li>
+<li><p>另外一边是数字，字符串转成数字，这个时候字符串转成数字规则如下：</p>
+<p>   ​    如果字符串中只包含数字（包括前面带正号或负号的情况），则将其转换为十进制数值；</p>
+<p>   ​    如果字符串中包含有效的浮点格式，则将其转换为对应的浮点数值；</p>
+<p>   ​    如果字符串中包含有效的十六进制格式，则将其转换为相同大小的十进制整数值；</p>
+<p>   ​    如果字符串是空的（不包含任何字符），则将其转换为0；</p>
+<p>   ​    如果字符串中包含上述格式之外的字符，则将其转换为NaN。</p>
+</li>
+<li><p>  另外一边是字符串，直接比较；</p>
+</li>
+<li><p>  其他返回<code>false</code></p>
+</li>
+</ul>
+<p>4、如果一边是数字，另一边是对象，对象使用<code>valueOf()</code>或者<code>toString()</code>进行比较</p>
+<p>​    如果<code>vlaueOf</code>存在，且返回原始类型数据，返回<code>valueOf</code>结果；</p>
+<p>​    如果<code>toString</code>存在，且返回原始类型数据，返回<code>toString</code>结果</p>
+<p>​    以上情况都不存在，报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=&#123;</span><br><span class="line">    <span class="attr">toString</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;调用了 a.toString&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">valueOf</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;调用了 a.valueOf&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a+<span class="number">1</span>;</span><br><span class="line"><span class="comment">//调用了a.valueOf</span></span><br><span class="line"><span class="comment">//调用了a.toString</span></span><br><span class="line">Uncaught <span class="built_in">TypeError</span>: Cannot convert object to primitive value</span><br></pre></td></tr></table></figure>
+
+
+
+<p>5、<code>null、undefined</code>不会进行类型转换，但是有如下比较结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">null == undefined;// true</span><br><span class="line">null === undefined; // false</span><br></pre></td></tr></table></figure>
+
+<p>看下面一个题目</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[] == ![]; <span class="comment">//true</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	右边是逻辑判断，所以先转成boolean，</span></span><br><span class="line"><span class="comment">	[] == !true</span></span><br><span class="line"><span class="comment">	[] == false</span></span><br><span class="line"><span class="comment">	将布尔值转成数字</span></span><br><span class="line"><span class="comment">	[] == 0</span></span><br><span class="line"><span class="comment">	左边不是原始类型，尝试把左边转成原始类型，变成</span></span><br><span class="line"><span class="comment">	&#x27;&#x27; == 0</span></span><br><span class="line"><span class="comment">	左边转成数字</span></span><br><span class="line"><span class="comment">	0 == 0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>综上，我的理解：</p>
+<p>​    在比较的第一步，如果其中一方为原始类型数据，则将另一方转成原始类型，这一步规则如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>/<span class="built_in">String</span>/<span class="built_in">Boolean</span> == <span class="built_in">Object</span>;<span class="comment">//Object先调用valueOf再调用toString，如果结果都不满意，报错</span></span><br></pre></td></tr></table></figure>
+
+<p>​    接下来：1、如果双方都是字符串，则直接比较    ；</p>
+<p>​            2、如果双方都是<code>boolean</code>则直接比较；</p>
+<p>​            3、如果双方都是数字，则直接比较；</p>
+<p>​            4、如果有一方是数字，将另一方转成数字进行比较；</p>
+<p>​            5、如果一方为<code>boolean</code>一方为<code>String</code>，则将两者均转为数字再进行比较</p>
+<h4 id="多说一点：对象-和true进行双等比较，总是返回false，但是Boolean-返回的是true"><a href="#多说一点：对象-和true进行双等比较，总是返回false，但是Boolean-返回的是true" class="headerlink" title="多说一点：对象({})和true进行双等比较，总是返回false，但是Boolean({})返回的是true"></a>多说一点：对象({})和true进行双等比较，总是返回false，但是Boolean({})返回的是true</h4><p>参考资料：</p>
+<p>​    <a target="_blank" rel="noopener" href="http://frontenddev.org/link/convert-the-tostring-the-valueof-javascript-object.html">JavaScript对象转化之toString、valueOf</a></p>
+<p>​    <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness">JavaScript中的相等性判断</a></p>
+<p>多说一句，相等操作符<code>==</code>应尽量少的使用，全等操作符的结果更容易预测，并且因为没有隐式转换，全等比较的操作会更快。</p>
+<p>​    </p>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/12/21/TopK%E9%97%AE%E9%A2%98/" class="prev">PREV</a><a href="/2017/12/18/PreparedStatement%E4%B8%8ESQL%E6%B3%A8%E5%85%A5/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
+var disqus_identifier = '2017/12/21/Javascript中的隐式类型转换/';
+var disqus_title = 'Javascript中的隐式类型转换';
+var disqus_url = 'http://mengfansheng.com/2017/12/21/Javascript中的隐式类型转换/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//seansun.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2021 <a href="http://mengfansheng.com">孟凡胜</a>, <a href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备17022623号</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
